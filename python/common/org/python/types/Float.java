@@ -595,17 +595,6 @@ public class Float extends org.python.types.Object {
     }
 
     @org.python.Method(
-            __doc__ = "abs(self)"
-    )
-    public org.python.Object __abs__() {
-        if (this.value < 0.0) {
-            return new org.python.types.Float(-this.value);
-        } else {
-            return this;
-        }
-    }
-
-    @org.python.Method(
             __doc__ = "int(self)"
     )
     public org.python.Object __int__() {

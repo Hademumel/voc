@@ -40,7 +40,7 @@ public class Type extends org.python.types.Object implements org.python.Callable
         if (python_type == null) {
             // If type isn't known, create and store a placeholder
             // so that recursive lookups have a termination condition.
-            PlaceholderType placeholder = new PlaceholderType(java_class);
+            org.python.types.PlaceholderType placeholder = new org.python.types.PlaceholderType(java_class);
             known_types.put(java_class, placeholder);
 
             // Declare the type, and install it the known types list

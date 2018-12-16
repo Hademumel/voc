@@ -874,13 +874,6 @@ public class Int extends org.python.types.Object {
     }
 
     @org.python.Method(
-            __doc__ = "abs(self)"
-    )
-    public org.python.Object __abs__() {
-        return getInt(Math.abs(this.value));
-    }
-
-    @org.python.Method(
             __doc__ = "~self"
     )
     public org.python.Object __invert__() {

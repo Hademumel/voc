@@ -610,13 +610,6 @@ public class Bool extends org.python.types.Object {
     }
 
     @org.python.Method(
-            __doc__ = "abs(self)"
-    )
-    public org.python.Object __abs__() {
-        return org.python.types.Int.getInt(this.value ? 1 : 0);
-    }
-
-    @org.python.Method(
             __doc__ = "~self"
     )
     public org.python.Object __invert__() {

@@ -1,7 +1,5 @@
 from .. utils import TranspileTestCase, BuiltinFunctionTestCase
 
-from unittest import expectedFailure
-
 
 class AbsTests(TranspileTestCase):
     def test_abs_not_implemented(self):
@@ -15,16 +13,38 @@ class AbsTests(TranspileTestCase):
                 print(err)
             """)
 
-    @expectedFailure
-    def test_incorrect_abs_call(self):
+    def test_incorrect_abs_call_int(self):
         self.assertCodeExecution("""
             x = 1
             print(x.abs())
-            """)
+            """, exits_early=True)
+
+    def test_incorrect_abs_call_float(self):
+        self.assertCodeExecution("""
+            x = 1.2
+            print(x.abs())
+            """, exits_early=True)
+
+    def test_incorrect_abs_call_complex(self):
+        self.assertCodeExecution("""
+            x = 5j
+            print(x.abs())
+            """, exits_early=True)
+
+    def test_incorrect_abs_call_bool(self):
+        self.assertCodeExecution("""
+            x = True
+            print(x.abs())
+            """, exits_early=True)
+
+    def test_incorrect_abs_call_list(self):
+        self.assertCodeExecution("""
+            x = []
+            print(x.abs())
+            """, exits_early=True)
 
 
 class BuiltinAbsFunctionTests(BuiltinFunctionTestCase, TranspileTestCase):
     functions = ["abs"]
 
-    not_implemented = [
-    ]
+    not_implemented = []

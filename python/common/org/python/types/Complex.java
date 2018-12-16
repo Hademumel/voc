@@ -688,15 +688,6 @@ public class Complex extends org.python.types.Object {
     }
 
     @org.python.Method(
-            __doc__ = "abs(self)"
-    )
-    public org.python.Object __abs__() {
-        double real = this.real.value;
-        double imag = this.imag.value;
-        return new org.python.types.Float(java.lang.Math.sqrt(real * real + imag * imag));
-    }
-
-    @org.python.Method(
             __doc__ = "int(self)"
     )
     public org.python.Object __int__() {

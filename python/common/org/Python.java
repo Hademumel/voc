@@ -425,9 +425,21 @@ public class Python {
             args = {"number"}
     )
     public static org.python.Object abs(org.python.Object number) {
-        try {
-            return number.__abs__();
-        } catch (org.python.exceptions.AttributeError ae) {
+        if (number instanceof org.python.types.Int) {
+            org.python.types.Int intType = (org.python.types.Int) number;
+            return intType.getInt(Math.abs(intType.value));
+        } else if (number instanceof org.python.types.Float) {
+            org.python.types.Float floatType = (org.python.types.Float) number;
+            return new org.python.types.Float(Math.abs(floatType.value));
+        } else if (number instanceof org.python.types.Complex) {
+            org.python.types.Complex complexType = (org.python.types.Complex) number;
+            double real = complexType.real.value;
+            double imag = complexType.imag.value;
+            return new org.python.types.Float(Math.sqrt(real * real + imag * imag));
+        } else if (number instanceof org.python.types.Bool) {
+            org.python.types.Bool boolType = (org.python.types.Bool) number;
+            return org.python.types.Int.getInt(boolType.value ? 1 : 0);
+        } else {
             throw new org.python.exceptions.TypeError("bad operand type for abs(): '" + number.typeName() + "'");
         }
     }
